@@ -33,8 +33,8 @@ color:
 footer:
   copyright: Reestimativa
   location: Minas Gerais
-  social: Around the Web
-  credits: DCGF
+  #social: Around the Web
+  credits: Sobre a DCGF
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 # social:
@@ -55,7 +55,7 @@ footer:
 #   - line: Beverly Hills, CA 90210
 
 # Credits content
-credits: 'A Reestimativa é um processo whatsoever da DCGF.'
+# credits: 'A Diretoria Central de Gestão Fiscal.'
 
 # Build settings
 markdown: kramdown
