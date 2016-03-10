@@ -1,4 +1,6 @@
-# Reestimativa DCGF/SCPPO
+---
+title: Reestimativa DCGF/SCPPO
+---
 
 [1. Visão Geral](#1-visao-geral)
 
