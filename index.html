@@ -63,6 +63,11 @@ img {
   max-width:100%;
   height: auto;
 }
+
+body {
+	font-size: 20px;
+}
+
 h1 {
   font-size: 34px;
 }
@@ -295,7 +300,7 @@ div.tocify {
 <div id="app-reestimativa" class="section level1">
 <h1><span class="header-section-number">2</span> App Reestimativa</h1>
 <p>As informações produzidas e reunidas no processo da Reestimativa são consolidadas em um aplicativo de visualização de dados (Qlikview). Esta seção descreve o fluxo de construção do aplicativo. Todo esse processo é executado dentro do ambiente do GNU Make/Makefile, que será descrito em outra seção.</p>
-<p><img src="imgs/fluxo_app.png" alt="Fluxo de construção do App" /></p>
+<img src="imgs/fluxo_app.png" alt="Fluxo de construção do App" />
 <div id="config" class="section level2">
 <h2><span class="header-section-number">2.1</span> Config</h2>
 <p>A construção do aplicativo começa com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versão especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versão diferente da necessária, o usuário terá a opção de atualizá-lo no decorrer do processo, ou encerrar o processo e fazer a atualização manual do pacote.</p>
