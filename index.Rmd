@@ -1,33 +1,23 @@
 ---
-title: "Untitled"
+title: "Reestimativa DCGF/SCPPO"
 author: "DCGF"
 date: "11 de março de 2016"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: true
+    theme: "sandstone"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Reestimativa DCGF/SCPPO
+# Visão Geral 
 
-[1. Visão Geral](#1-visao-geral)
-
-
-[2. App Reestimativa](#2-app-reestimativa)
-
->[2.1 Config](#21-config)
-
->[2.2 Munge](#22-munge)
-
->[2.3 Tests](#23-tests)
-
->[2.4 Qlikview](#24-qlikview)
-
-
-## 1. Visão Geral 
-
-![1. Visão Geral](imgs/visao_geral.png)
+![Visão Geral](imgs/visao_geral.png) 
 
 A Reestimativa é um processo da DCGF/SCPPO que combina informações fiscais/
 orçamentárias para auxiliar a tomada de decisão gerencial na esfera do 
@@ -60,7 +50,7 @@ a municípios, PASEP, complementação, entre outras, também são estimadas pel
 As demais estimativas de despesa são consolidadas pela Diretoria Central de 
 Monitoramento da Execução Física e Orçamentária (DCMEFO).
 
-## 2. App Reestimativa
+# App Reestimativa {.tabset}
 
 As informações produzidas e reunidas no processo da Reestimativa são consolidadas
 em um aplicativo de visualização de dados (Qlikview). Esta seção descreve o
@@ -69,15 +59,15 @@ ambiente do GNU Make/Makefile, que será descrito em outra seção.
 
 ![Fluxo de construção do App](imgs/fluxo_app.png)
 
-### 2.1 Config
+## Config
 
 A construção do aplicativo começa com um teste de requisitos. O processo **munge**
 depende de pacotes do R. Estes pacotes devem estar na versão especificada na
 pasta *config/*. Se algum destes pacotes estiver em versão diferente da
 necessária, o usuário terá a opção de atualizá-lo no decorrer do processo,
-ou encerrar o processo e fazer a atualização manual do pacote. [Início ↑](#reestimativa-dcgfscppo)
+ou encerrar o processo e fazer a atualização manual do pacote.
 
-### 2.2 Munge
+## Munge
 
 O processo **Munge** transforma e reúne as bases de execução e previsão da receita 
 e despesa para uso no Qlikview. 
@@ -99,9 +89,9 @@ serem carregados no Qlikview:
 * *suplementacao.csv*.
 
 Se algum erro ocorrer durante este processo, as mensagens de erro e de execução
-do processo serão salvas na pasta *logs/*. [Início ↑](#reestimativa-dcgfscppo)
+do processo serão salvas na pasta *logs/*.
 
-### 2.3 Tests
+## Tests
 
 Nesta fase do processo, as bases geradas pelo processo **Munge** e salvas na 
 pasta *data/* são submetidas a uma bateria de testes. São verificadas 
@@ -110,13 +100,13 @@ por exemplo, fechamento de fontes, receitas e despesas intraorçamentárias da
 Saúde, receitas e despesas de Complementação, etc.
 
 O resultado dos testes, indicando quais passaram e quais falharam, são salvos
-de volta na pasta *data/*, no arquivo *checklist.txt*. [Início ↑](#reestimativa-dcgfscppo)
+de volta na pasta *data/*, no arquivo *checklist.txt*.
 
-### 2.4 Qlikview
+## Qlikview
 
 Por fim, os arquivos *rec.csv*, *desp.csv* e *suplementacao.csv* na pasta
 *data/* são carregados no Qlkiview e disponibilzados ao usuário.
 
 Além dos dados, o aplicativo em Qlikview também importa os resultados da fase
 **Tests** e arquivos auxiliares que fazem a chave entre código e descrição
-de variáveis como Ação, Fonte, Elemento e Item. [Início ↑](#reestimativa-dcgfscppo)
+de variáveis como Ação, Fonte, Elemento e Item.
