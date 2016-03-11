@@ -50,7 +50,7 @@ a municípios, PASEP, complementação, entre outras, também são estimadas pel
 As demais estimativas de despesa são consolidadas pela Diretoria Central de 
 Monitoramento da Execução Física e Orçamentária (DCMEFO).
 
-# App Reestimativa {.tabset}
+# App Reestimativa
 
 As informações produzidas e reunidas no processo da Reestimativa são consolidadas
 em um aplicativo de visualização de dados (Qlikview). Esta seção descreve o
