@@ -1,7 +1,7 @@
 ---
-title: "Vari·veis de ambiente"
+title: "Vari√°veis de ambiente"
 author: "DCGF"
-date: "15 de marÁo de 2016"
+date: "15 de mar√ßo de 2016"
 output:
   html_document:
     toc: true
@@ -19,26 +19,26 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# O que s„o?
+# O que s√£o?
 
-Vari·veis de ambiente s„o informaÁıes registradas no ambiente do Windows que se
-tornam disponÌveis para serem acessadas por softwares e processos computacionais
-em geral. As vari·veis a seguir s„o necess·rias ao processo de construÁ„o da 
+Vari√°veis de ambiente s√£o informa√ß√µes registradas no ambiente do Windows que se
+tornam dispon√≠veis para serem acessadas por softwares e processos computacionais
+em geral. As vari√°veis a seguir s√£o necess√°rias ao processo de constru√ß√£o da 
 Reestimativa.
 
 ## HTTP_PROXY e HTTPS_PROXY
-Uma das vari·veis de ambiente mais comuns È a `HTTP_PROXY`. Programas como o 
-Internet Explorer, Dropbox e RStudio utilizam esta vari·vel para se conectar ‡ 
+Uma das vari√°veis de ambiente mais comuns √© a `HTTP_PROXY`. Programas como o 
+Internet Explorer, Dropbox e RStudio utilizam esta vari√°vel para se conectar √† 
 internet via *proxy* (Em muitas empresas, e na CAMG, os computadores se conectam 
-‡ internet via *proxy*, uma espÈcie de ped·gio no caminho para a internet. 
-N„o me pergunte por que. Deve ter a ver com seguranÁa. Google is your friend).
+√† internet via *proxy*, uma esp√©cie de ped√°gio no caminho para a internet. 
+N√£o me pergunte por que. Deve ter a ver com seguran√ßa. Google is your friend).
 
-Esta vari·vel deve estar definida para que o R consiga acessar a internet e 
-fazer o download de pacotes quando necess·rio. O Git tambÈm utiliza esta vari·vel
-para baixar e enviar dados para repositÛrios na nuvem. O mesmo vale para a
+Esta vari√°vel deve estar definida para que o R consiga acessar a internet e 
+fazer o download de pacotes quando necess√°rio. O Git tamb√©m utiliza esta vari√°vel
+para baixar e enviar dados para reposit√≥rios na nuvem. O mesmo vale para a
 `HTTPS_PROXY`.
 
-A definiÁ„o destas vari·veis deve ter o seguinte padr„o:
+A defini√ß√£o destas vari√°veis deve ter o seguinte padr√£o:
 
 HTTP_PROXY:
 
@@ -48,28 +48,28 @@ HTTPS_PROXY:
 
  `https://masp:senha@proxycamg.prodemge.gov.br:8080`
 
-em que *\<masp\>* e *\<senha\>* s„o o usu·rio de login no computador 
+em que *\<masp\>* e *\<senha\>* s√£o o usu√°rio de login no computador 
 (exemplo: m752634) e a respectiva senha. 
 
-> AtenÁ„o: 
+> Aten√ß√£o: 
 > 
 >   Se na senhar constarem caracteres especiais como `@` e `#`, estes precisam ser 
->   substituÌdos por caracteres de escape em HTML. Veja [isto](http://dan-scientia.blogspot.com.br/2011/07/caracteres-especiais-na-variavel-de.html).
+>   substitu√≠dos por caracteres de escape em HTML. Veja [isto](http://dan-scientia.blogspot.com.br/2011/07/caracteres-especiais-na-variavel-de.html).
   
 
 ## PATH
 
-A vari·vel `PATH` indica o caminho para pastas no computador que guardam
+A vari√°vel `PATH` indica o caminho para pastas no computador que guardam
 softwares de interesse. Se o caminho `C:\Program Files\R\R-3.2.3\bin`, por 
-exemplo, que abriga o software R estiver incluÌdo no `PATH`, ent„o o R 
-poder· ser acessado na linha de comando simplesmente digitando-se R.
+exemplo, que abriga o software R estiver inclu√≠do no `PATH`, ent√£o o R 
+poder√° ser acessado na linha de comando simplesmente digitando-se R.
 
-O App da reestimativa utiliza esta opÁ„o para acessar o R, Git e Qlikview. Logo
-o caminho das pastas destes softwares devem constar na vari·vel `PATH`.
+O App da reestimativa utiliza esta op√ß√£o para acessar o R, Git e Qlikview. Logo
+o caminho das pastas destes softwares devem constar na vari√°vel `PATH`.
 
-Verifique as pastas corretas e ceritifique que est„o incluÌdas.
+Verifique as pastas corretas e ceritifique que est√£o inclu√≠das.
 O caminho das pastas pode variar. No computador utilizado para redigir este
-manual, os caminhos destes trÍs softwares s„o:
+manual, os caminhos destes tr√™s softwares s√£o:
 
 ```
 C:\Program Files\R\R-3.2.3\bin
@@ -79,33 +79,33 @@ C:\Program Files\QlikView
 
 ## PATH_SCPPO
 
-As pastas da rede s„o mapeadas em unidades de rede identificadas por uma letra
-mai˙scula seguida de dois pontos `(:)`. O App da Reestimativa precisa acessar
-a pasta da Reestimativa na rede, e para isso, a vari·vel `PATH_SCPPO` deve estar
+As pastas da rede s√£o mapeadas em unidades de rede identificadas por uma letra
+mai√∫scula seguida de dois pontos `(:)`. O App da Reestimativa precisa acessar
+a pasta da Reestimativa na rede, e para isso, a vari√°vel `PATH_SCPPO` deve estar
 definida informando o nome correto da unidade de rede. Neste computador esta
-vari·vel est· definida como `S:`.
+vari√°vel est√° definida como `S:`.
 
 ## R\_LIBS\_PATH
 
-Por padr„o, os pacotes do R s„o instalados na mesma pasta em que o programa est·
-instalado (ex: `C:\Program Files\R\R-3.2.3\`). Por restriÁıes de seguranÁa da 
-CAMG, pode ser que os pacotes sejam instalados em outro diretÛrio. Neste caso,
-pode acontecer que o R n„o encontre os pacotes instalados e, portanto, n„o consiga
+Por padr√£o, os pacotes do R s√£o instalados na mesma pasta em que o programa est√°
+instalado (ex: `C:\Program Files\R\R-3.2.3\`). Por restri√ß√µes de seguran√ßa da 
+CAMG, pode ser que os pacotes sejam instalados em outro diret√≥rio. Neste caso,
+pode acontecer que o R n√£o encontre os pacotes instalados e, portanto, n√£o consiga
 executar determinados processos.
 
-Para evitar este problema, È conveniente definir uma pasta padr„o para instalaÁ„o
-dos pacotes. Isto È feito definindo-se a vari·vel `R_LIBS_PATH`.
+Para evitar este problema, √© conveniente definir uma pasta padr√£o para instala√ß√£o
+dos pacotes. Isto √© feito definindo-se a vari√°vel `R_LIBS_PATH`.
 
-Neste computador, por exemplo, esta vari·vel est· definida como 
-`C:\Users\m752633\Documents\R\win-library\3.2`. Se j· houverem pacotes numa 
-pasta semelhante a essa no seu computador, utilize-a na vari·vel `R_LIBS_PATH`.
+Neste computador, por exemplo, esta vari√°vel est√° definida como 
+`C:\Users\m752633\Documents\R\win-library\3.2`. Se j√° houverem pacotes numa 
+pasta semelhante a essa no seu computador, utilize-a na vari√°vel `R_LIBS_PATH`.
 
 # Onde vivem?
 
-Para definir ou extinguir vari·veis de ambiente digite "ambiente" na caixa
+Para definir ou extinguir vari√°veis de ambiente digite "ambiente" na caixa
 de pesquisa do menu iniciar:
 
-![Vari·veis de Ambiente](imgs/vars_ambiente.png)
+![Vari√°veis de Ambiente](imgs/vars_ambiente.png)
 
 
 

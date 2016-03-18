@@ -12,7 +12,7 @@
 <meta name="author" content="DCGF" />
 
 
-<title>Passo a passo de atualizaÃ§Ã£o da Reestimativa</title>
+<title>Passo a passo de atualização da Reestimativa</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -305,51 +305,51 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Passo a passo de atualizaÃ§Ã£o da Reestimativa</h1>
+<h1 class="title">Passo a passo de atualização da Reestimativa</h1>
 <h4 class="author"><em>DCGF</em></h4>
-<h4 class="date"><em>15 de marÃ§o de 2016</em></h4>
+<h4 class="date"><em>15 de março de 2016</em></h4>
 
 </div>
 
 
-<div id="sincronizar-repositario-local-com-a-nuvem" class="section level1">
-<h1><span class="header-section-number">1</span> Sincronizar repositÃ³rio local com a nuvem</h1>
-<div id="verificar-alteraaaes-locais" class="section level2">
-<h2><span class="header-section-number">1.1</span> Verificar alteraÃ§Ãµes locais</h2>
-<p>Antes de iniciar a sincronizaÃ§Ã£o, verifique se hÃ¡ alteraÃ§Ãµes locais que deseja salvar ou descartar:</p>
+<div id="sincronizar-repositorio-local-com-a-nuvem" class="section level1">
+<h1><span class="header-section-number">1</span> Sincronizar repositório local com a nuvem</h1>
+<div id="verificar-alteracoes-locais" class="section level2">
+<h2><span class="header-section-number">1.1</span> Verificar alterações locais</h2>
+<p>Antes de iniciar a sincronização, verifique se há alterações locais que deseja salvar ou descartar:</p>
 <blockquote>
 <p>git status</p>
 </blockquote>
-<p>Utilize <strong>git add</strong> para validar alteraÃ§Ãµes que desejar, caso ainda nÃ£o estejam validadas e <strong>git commit -m “(<em>mensagem do commit</em>)”</strong> para salvar as alteraÃ§Ãµes.</p>
-<p>Se desejar descartar alteraÃ§Ãµes, utilize o comando <strong>git checkout – <em>[arquivo]</em></strong>. Para mais detalhes veja <a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-reset">isto</a>.</p>
-<p>Utilize <strong>git push</strong> para enviar as atualizaÃ§Ãµes para a nuvem.</p>
+<p>Utilize <strong>git add</strong> para validar alterações que desejar, caso ainda não estejam validadas e <strong>git commit -m “(<em>mensagem do commit</em>)”</strong> para salvar as alterações.</p>
+<p>Se desejar descartar alterações, utilize o comando <strong>git checkout – <em>[arquivo]</em></strong>. Para mais detalhes veja <a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-reset">isto</a>.</p>
+<p>Utilize <strong>git push</strong> para enviar as atualizações para a nuvem.</p>
 </div>
-<div id="verificar-alteraaaes-na-nuvem" class="section level2">
-<h2><span class="header-section-number">1.2</span> Verificar alteraÃ§Ãµes na nuvem</h2>
-<p>Utilize <strong>git fetch</strong> para recuperar informaÃ§Ãµes sobre o estado mais recente do repositÃ³rio na nuvem, e em seguida <strong>git status</strong> para verificar a situaÃ§Ã£o do repositÃ³rio local em relaÃ§Ã£o Ã  nuvem.</p>
-<p>Caso o repositÃ³rio da nuvem contenha alteraÃ§Ãµes que nÃ£o existem no repositÃ³rio local, utilize <strong>git merge origin/<em>[branch]</em></strong> para sincronizar.</p>
-<p>Conselho enigmÃ¡tico do Mestre dos Magos ao final do episÃ³dio:</p>
+<div id="verificar-alteracoes-na-nuvem" class="section level2">
+<h2><span class="header-section-number">1.2</span> Verificar alterações na nuvem</h2>
+<p>Utilize <strong>git fetch</strong> para recuperar informações sobre o estado mais recente do repositório na nuvem, e em seguida <strong>git status</strong> para verificar a situação do repositório local em relação à nuvem.</p>
+<p>Caso o repositório da nuvem contenha alterações que não existem no repositório local, utilize <strong>git merge origin/<em>[branch]</em></strong> para sincronizar.</p>
+<p>Conselho enigmático do Mestre dos Magos ao final do episódio:</p>
 <blockquote>
-<p>Ã‰ possÃ­vel realizar as operaÃ§Ãµes acima utilizando apenas o comando <strong>git pull</strong>.</p>
+<p>É possível realizar as operações acima utilizando apenas o comando <strong>git pull</strong>.</p>
 </blockquote>
 </div>
 </div>
-<div id="atualizar-consultas-da-execuaao" class="section level1">
-<h1><span class="header-section-number">2</span> Atualizar consultas da execuÃ§Ã£o</h1>
-<p>Essa parte Ã© fÃ¡cil nÃ©? ;) SÃ³ nÃ£o esqueÃ§a de salvar as consultas em formato <strong>.xlsx</strong> na pasta <em>data-raw/</em>.</p>
+<div id="atualizar-consultas-da-execucao" class="section level1">
+<h1><span class="header-section-number">2</span> Atualizar consultas da execução</h1>
+<p>Essa parte é fácil né? ;) Só não esqueça de salvar as consultas em formato <strong>.xlsx</strong> na pasta <em>data-raw/</em>.</p>
 </div>
 <div id="make-build" class="section level1">
 <h1><span class="header-section-number">3</span> Make build</h1>
-<p>ApÃ³s salvar as consultas da execuÃ§Ã£o na pasta <em>data-raw/</em>, abra o Git Bash, execute o comando <em>make build</em>, e reze para que tudo dÃª certo.</p>
+<p>Após salvar as consultas da execução na pasta <em>data-raw/</em>, abra o Git Bash, execute o comando <em>make build</em>, e reze para que tudo dê certo.</p>
 </div>
 <div id="make-deploy" class="section level1">
 <h1><span class="header-section-number">4</span> Make deploy</h1>
-<p>Abra o Qlikview, utilize o comando <strong>Recarregar</strong> e verifique na aba “Painel de controle” o resultado dos testes e se os dados da execuÃ§Ã£o foram atualizados. Se estiver tudo em ordem, fique feliz. Feche o Qlikview e volte ao Git Bash. Num ato de fÃ©, execute o comando <strong>make deploy</strong><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Ao final da execuÃ§Ã£o, verifique se o app foi copiado para a pasta da Reestimativa na rede.</p>
+<p>Abra o Qlikview, utilize o comando <strong>Recarregar</strong> e verifique na aba “Painel de controle” o resultado dos testes e se os dados da execução foram atualizados. Se estiver tudo em ordem, fique feliz. Feche o Qlikview e volte ao Git Bash. Num ato de fé, execute o comando <strong>make deploy</strong><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Ao final da execução, verifique se o app foi copiado para a pasta da Reestimativa na rede.</p>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Se sua curiosidade cientÃ­fica Ã© maior do que sua fÃ©, vocÃª pode estudar o funcionamento do <em>make deploy</em> <a href="make_deploy.html">aqui</a>.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>Se sua curiosidade científica é maior do que sua fé, você pode estudar o funcionamento do <em>make deploy</em> <a href="make_deploy.html">aqui</a>.<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
 

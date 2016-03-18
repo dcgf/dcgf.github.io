@@ -1,7 +1,7 @@
 ---
 title: "make deploy"
 author: "DCGF"
-date: "15 de marÁo de 2016"
+date: "15 de mar√ßo de 2016"
 output:
   html_document:
     toc: true
@@ -18,10 +18,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Esta È a parte do **Makefile** que define o processo **make deploy**:
+Esta √© a parte do **Makefile** que define o processo **make deploy**:
 
 ```makefile
-deploy: ## Atualiza o qlikview, faz commit da alteraÁ„o e disponibiliza o .qvw na rede da SCPPO
+deploy: ## Atualiza o qlikview, faz commit da altera√ß√£o e disponibiliza o .qvw na rede da SCPPO
 	@echo Recarregando dados no Qlikview...
 	@qv /r Reestimativa.qvw
 	@echo "Atualizando GitLab..."
@@ -31,23 +31,23 @@ deploy: ## Atualiza o qlikview, faz commit da alteraÁ„o e disponibiliza o .qvw n
 	@git push origin master
 	@git rev-parse --short HEAD > logs/commit.txt
 	@echo "-----------------------------------------------------"
-	@cp Reestimativa.qvw $(PATH_SCPPO)/3.Gest„o\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_$(DATE)_$(COMMIT).qvw
-	@echo "Arquivo Reestimativa_$(DATE)_$(COMMIT).qvw criado com sucesso em $(PATH_SCPPO)/3.Gest„o Fiscal/3.Reestimativa/2016/!base/"
+	@cp Reestimativa.qvw $(PATH_SCPPO)/3.Gest√£o\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_$(DATE)_$(COMMIT).qvw
+	@echo "Arquivo Reestimativa_$(DATE)_$(COMMIT).qvw criado com sucesso em $(PATH_SCPPO)/3.Gest√£o Fiscal/3.Reestimativa/2016/!base/"
 ```
 
 1. A linha `@qv /r Reestimativa.qvw` abre, recarrega e salva o app da Reestimativa.
 
 2. As linhas seguintes (`git add`, `git commit`) validam e salvam
-   as alteraÁıes feitas ao App no sistema de controle de vers„o (git). O comando
-   `git push` envia estas alteraÁıes para a nuvem.
+   as altera√ß√µes feitas ao App no sistema de controle de vers√£o (git). O comando
+   `git push` envia estas altera√ß√µes para a nuvem.
    
 3. `@git rev-parse --short HEAD > logs/commit.txt` salva o identificador do
-   commit no arquivo *logs/commit.txt*. Este identificador È usado no nome do
-   app que È copiado na pasta da rede.
+   commit no arquivo *logs/commit.txt*. Este identificador √© usado no nome do
+   app que √© copiado na pasta da rede.
    
-4. `@cp Reestimativa.qvw $(PATH_SCPPO)/3.Gest„o\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_$(DATE)_$(COMMIT).qvw` copia o 
-   app na rede. Neste comando utiliza-se a vari·vel de ambiente `PATH_SCPPO`,
-   que indica o nome da unidade de rede ("S:" ou "T:", por exemplo), a vari·vel
-   `DATE`, que registra a data corrente, e a vari·vel `COMMIT`, que guarda o
-   identificador do commit. Todas estas vari·veis s„o definidas no inÌcio do 
+4. `@cp Reestimativa.qvw $(PATH_SCPPO)/3.Gest√£o\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_$(DATE)_$(COMMIT).qvw` copia o 
+   app na rede. Neste comando utiliza-se a vari√°vel de ambiente `PATH_SCPPO`,
+   que indica o nome da unidade de rede ("S:" ou "T:", por exemplo), a vari√°vel
+   `DATE`, que registra a data corrente, e a vari√°vel `COMMIT`, que guarda o
+   identificador do commit. Todas estas vari√°veis s√£o definidas no in√≠cio do 
    makefile.

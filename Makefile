@@ -5,7 +5,7 @@ all: clean html
 html: $(HTML_FILES)
 
 %.html: %.Rmd
-	R --slave -e "set.seed(100);rmarkdown::render('$<')"
+	R --slave -e "set.seed(100);rmarkdown::render('$<', encoding = 'UTF-8')"
 
 .PHONY: clean
 clean:
