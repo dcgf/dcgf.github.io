@@ -5,8 +5,8 @@ date: "15 de março de 2016"
 output:
   html_document:
     toc: true
-    toc_float: true
-    collapsed: true
+    toc_float:
+      collapsed: false
     number_sections: true
     theme: "sandstone"
     highlight: tango
@@ -31,7 +31,7 @@ Uma das variáveis de ambiente mais comuns é a `HTTP_PROXY`. Programas como o
 Internet Explorer, Dropbox e RStudio utilizam esta variável para se conectar à 
 internet via *proxy* (Em muitas empresas, e na CAMG, os computadores se conectam 
 à internet via *proxy*, uma espécie de pedágio no caminho para a internet. 
-Não me pergunte por que. Deve ter a ver com segurança. Google is your friend).
+Não me pergunte por quê. Deve ter a ver com segurança. *Google is your friend*).
 
 Esta variável deve estar definida para que o R consiga acessar a internet e 
 fazer o download de pacotes quando necessário. O Git também utiliza esta variável

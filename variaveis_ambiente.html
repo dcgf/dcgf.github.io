@@ -163,7 +163,7 @@ $(document).ready(function ()  {
       ignoreSelector: "h1.title, .toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify
@@ -224,6 +224,13 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
 
 </style>
 
@@ -317,7 +324,7 @@ div.tocify {
 <p>Variáveis de ambiente são informações registradas no ambiente do Windows que se tornam disponíveis para serem acessadas por softwares e processos computacionais em geral. As variáveis a seguir são necessárias ao processo de construção da Reestimativa.</p>
 <div id="http_proxy-e-https_proxy" class="section level2">
 <h2><span class="header-section-number">1.1</span> HTTP_PROXY e HTTPS_PROXY</h2>
-<p>Uma das variáveis de ambiente mais comuns é a <code>HTTP_PROXY</code>. Programas como o Internet Explorer, Dropbox e RStudio utilizam esta variável para se conectar à internet via <em>proxy</em> (Em muitas empresas, e na CAMG, os computadores se conectam à internet via <em>proxy</em>, uma espécie de pedágio no caminho para a internet. Não me pergunte por que. Deve ter a ver com segurança. Google is your friend).</p>
+<p>Uma das variáveis de ambiente mais comuns é a <code>HTTP_PROXY</code>. Programas como o Internet Explorer, Dropbox e RStudio utilizam esta variável para se conectar à internet via <em>proxy</em> (Em muitas empresas, e na CAMG, os computadores se conectam à internet via <em>proxy</em>, uma espécie de pedágio no caminho para a internet. Não me pergunte por quê. Deve ter a ver com segurança. <em>Google is your friend</em>).</p>
 <p>Esta variável deve estar definida para que o R consiga acessar a internet e fazer o download de pacotes quando necessário. O Git também utiliza esta variável para baixar e enviar dados para repositórios na nuvem. O mesmo vale para a <code>HTTPS_PROXY</code>.</p>
 <p>A definição destas variáveis deve ter o seguinte padrão:</p>
 <p>HTTP_PROXY:</p>
