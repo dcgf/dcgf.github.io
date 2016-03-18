@@ -1,0 +1,113 @@
+---
+title: "Variáveis de ambiente"
+author: "DCGF"
+date: "15 de março de 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: true
+    number_sections: true
+    theme: "sandstone"
+    highlight: tango
+    includes:
+      in_header: _font_size.html
+---
+
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# O que são?
+
+Variáveis de ambiente são informações registradas no ambiente do Windows que se
+tornam disponíveis para serem acessadas por softwares e processos computacionais
+em geral. As variáveis a seguir são necessárias ao processo de construção da 
+Reestimativa.
+
+## HTTP_PROXY e HTTPS_PROXY
+Uma das variáveis de ambiente mais comuns é a `HTTP_PROXY`. Programas como o 
+Internet Explorer, Dropbox e RStudio utilizam esta variável para se conectar à 
+internet via *proxy* (Em muitas empresas, e na CAMG, os computadores se conectam 
+à internet via *proxy*, uma espécie de pedágio no caminho para a internet. 
+Não me pergunte por que. Deve ter a ver com segurança. Google is your friend).
+
+Esta variável deve estar definida para que o R consiga acessar a internet e 
+fazer o download de pacotes quando necessário. O Git também utiliza esta variável
+para baixar e enviar dados para repositórios na nuvem. O mesmo vale para a
+`HTTPS_PROXY`.
+
+A definição destas variáveis deve ter o seguinte padrão:
+
+HTTP_PROXY:
+
+ `http://masp:senha@proxycamg.prodemge.gov.br:8080`
+
+HTTPS_PROXY:
+
+ `https://masp:senha@proxycamg.prodemge.gov.br:8080`
+
+em que *\<masp\>* e *\<senha\>* são o usuário de login no computador 
+(exemplo: m752634) e a respectiva senha. 
+
+> Atenção: 
+> 
+>   Se na senhar constarem caracteres especiais como `@` e `#`, estes precisam ser 
+>   substituídos por caracteres de escape em HTML. Veja [isto](http://dan-scientia.blogspot.com.br/2011/07/caracteres-especiais-na-variavel-de.html).
+  
+
+## PATH
+
+A variável `PATH` indica o caminho para pastas no computador que guardam
+softwares de interesse. Se o caminho `C:\Program Files\R\R-3.2.3\bin`, por 
+exemplo, que abriga o software R estiver incluído no `PATH`, então o R 
+poderá ser acessado na linha de comando simplesmente digitando-se R.
+
+O App da reestimativa utiliza esta opção para acessar o R, Git e Qlikview. Logo
+o caminho das pastas destes softwares devem constar na variável `PATH`.
+
+Verifique as pastas corretas e ceritifique que estão incluídas.
+O caminho das pastas pode variar. No computador utilizado para redigir este
+manual, os caminhos destes três softwares são:
+
+```
+C:\Program Files\R\R-3.2.3\bin
+C:\Program Files\Git\bin
+C:\Program Files\QlikView
+```
+
+## PATH_SCPPO
+
+As pastas da rede são mapeadas em unidades de rede identificadas por uma letra
+maiúscula seguida de dois pontos `(:)`. O App da Reestimativa precisa acessar
+a pasta da Reestimativa na rede, e para isso, a variável `PATH_SCPPO` deve estar
+definida informando o nome correto da unidade de rede. Neste computador esta
+variável está definida como `S:`.
+
+## R\_LIBS\_PATH
+
+Por padrão, os pacotes do R são instalados na mesma pasta em que o programa está
+instalado (ex: `C:\Program Files\R\R-3.2.3\`). Por restrições de segurança da 
+CAMG, pode ser que os pacotes sejam instalados em outro diretório. Neste caso,
+pode acontecer que o R não encontre os pacotes instalados e, portanto, não consiga
+executar determinados processos.
+
+Para evitar este problema, é conveniente definir uma pasta padrão para instalação
+dos pacotes. Isto é feito definindo-se a variável `R_LIBS_PATH`.
+
+Neste computador, por exemplo, esta variável está definida como 
+`C:\Users\m752633\Documents\R\win-library\3.2`. Se já houverem pacotes numa 
+pasta semelhante a essa no seu computador, utilize-a na variável `R_LIBS_PATH`.
+
+# Onde vivem?
+
+Para definir ou extinguir variáveis de ambiente digite "ambiente" na caixa
+de pesquisa do menu iniciar:
+
+![Variáveis de Ambiente](imgs/vars_ambiente.png)
+
+
+
+
+

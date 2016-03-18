@@ -1,0 +1,67 @@
+---
+title: "Passo a passo de atualização da Reestimativa"
+author: "DCGF"
+date: "15 de março de 2016"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: true
+    number_sections: true
+    theme: "sandstone"
+    includes:
+      in_header: _font_size.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Sincronizar repositório local com a nuvem
+
+## Verificar alterações locais
+
+Antes de iniciar a sincronização, verifique se há alterações locais que deseja
+salvar ou descartar:
+
+> git status
+
+Utilize **git add** para validar alterações que desejar, caso ainda não estejam
+validadas e **git commit -m "(*mensagem do commit*)"** para salvar as alterações.
+
+Se desejar descartar alterações, utilize o comando **git checkout -- *[arquivo]***.
+Para mais detalhes veja [isto](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset).
+
+Utilize **git push** para enviar as atualizações para a nuvem.
+
+## Verificar alterações na nuvem
+
+Utilize **git fetch** para recuperar informações sobre o estado mais recente do 
+repositório na nuvem, e em seguida **git status** para verificar a situação do
+repositório local em relação à nuvem.
+
+Caso o repositório da nuvem contenha alterações que não existem no repositório 
+local, utilize **git merge origin/*[branch]*** para sincronizar.
+
+Conselho enigmático do Mestre dos Magos ao final do episódio: 
+
+> É possível realizar as operações acima utilizando apenas o comando **git pull**.
+
+# Atualizar consultas da execução
+
+Essa parte é fácil né? ;)
+Só não esqueça de salvar as consultas em formato **.xlsx** na pasta *data-raw/*.
+
+# Make build
+Após salvar as consultas da execução na pasta *data-raw/*, abra o Git Bash,
+execute o comando *make build*, e reze para que tudo dê certo.
+
+# Make deploy
+Abra o Qlikview, utilize o comando **Recarregar** e verifique na aba
+"Painel de controle" o resultado dos testes e se os dados da execução foram
+atualizados. Se estiver tudo em ordem, fique feliz. Feche o Qlikview e volte ao
+Git Bash. Num ato de fé, execute o comando **make deploy**[^longnote]. Ao final da 
+execução, verifique se o app foi copiado para a pasta da Reestimativa na rede.
+
+[^longnote]: Se sua curiosidade científica é maior do que sua fé,
+você pode estudar o funcionamento do *make deploy* [aqui](make_deploy.html).

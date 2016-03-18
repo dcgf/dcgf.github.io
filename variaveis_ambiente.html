@@ -12,7 +12,7 @@
 <meta name="author" content="DCGF" />
 
 
-<title>App Reestimativa - Config</title>
+<title>Variáveis de ambiente</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -290,8 +290,10 @@ div.tocify {
           <a href="make" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">App Reestimativa <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
              <li class="dropdown-header">Tópicos especiais</li>
+             <li><a target="_blank" href="atualizacao.html">Atualização do App</a></li>
              <li><a target="_blank" href="config.html">Config</a></li>
              <li><a target="_blank" href="make_deploy.html">make deploy</a></li>
+             <li><a target="_blank" href="variaveis_ambiente.html">Variáveis de ambiente</a></li>
           </ul>
         </li>
 
@@ -303,33 +305,55 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">App Reestimativa - Config</h1>
+<h1 class="title">Variáveis de ambiente</h1>
 <h4 class="author"><em>DCGF</em></h4>
 <h4 class="date"><em>15 de março de 2016</em></h4>
 
 </div>
 
 
-<div id="config" class="section level1">
-<h1><span class="header-section-number">1</span> Config</h1>
-<p>A construção do aplicativo começa com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versão especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versão diferente da necessária, o usuário terá a opção de atualizá-lo no decorrer do processo, ou encerrar o processo e fazer a atualização manual do pacote. A função deste teste é evitar que o processamento dos dados no <strong>munge</strong> deixe de funcionar em razão de alterações não esperadas nos pacotes utilizados.</p>
+<div id="o-que-sao" class="section level1">
+<h1><span class="header-section-number">1</span> O que são?</h1>
+<p>Variáveis de ambiente são informações registradas no ambiente do Windows que se tornam disponíveis para serem acessadas por softwares e processos computacionais em geral. As variáveis a seguir são necessárias ao processo de construção da Reestimativa.</p>
+<div id="http_proxy-e-https_proxy" class="section level2">
+<h2><span class="header-section-number">1.1</span> HTTP_PROXY e HTTPS_PROXY</h2>
+<p>Uma das variáveis de ambiente mais comuns é a <code>HTTP_PROXY</code>. Programas como o Internet Explorer, Dropbox e RStudio utilizam esta variável para se conectar à internet via <em>proxy</em> (Em muitas empresas, e na CAMG, os computadores se conectam à internet via <em>proxy</em>, uma espécie de pedágio no caminho para a internet. Não me pergunte por que. Deve ter a ver com segurança. Google is your friend).</p>
+<p>Esta variável deve estar definida para que o R consiga acessar a internet e fazer o download de pacotes quando necessário. O Git também utiliza esta variável para baixar e enviar dados para repositórios na nuvem. O mesmo vale para a <code>HTTPS_PROXY</code>.</p>
+<p>A definição destas variáveis deve ter o seguinte padrão:</p>
+<p>HTTP_PROXY:</p>
+<p><code>http://masp:senha@proxycamg.prodemge.gov.br:8080</code></p>
+<p>HTTPS_PROXY:</p>
+<p><code>https://masp:senha@proxycamg.prodemge.gov.br:8080</code></p>
+<p>em que <em>&lt;masp&gt;</em> e <em>&lt;senha&gt;</em> são o usuário de login no computador (exemplo: m752634) e a respectiva senha.</p>
+<blockquote>
+<p>Atenção:</p>
+<p>Se na senhar constarem caracteres especiais como <code>@</code> e <code>#</code>, estes precisam ser substituídos por caracteres de escape em HTML. Veja <a href="http://dan-scientia.blogspot.com.br/2011/07/caracteres-especiais-na-variavel-de.html">isto</a>.</p>
+</blockquote>
 </div>
-<div id="estrutura" class="section level1">
-<h1><span class="header-section-number">2</span> Estrutura</h1>
-<p>Os testes de versão de pacotes é construído com dois arquivos:</p>
-<ul>
-<li>config/packageVersions</li>
-<li>R/packageVersions.R</li>
-</ul>
-<p>O arquivo na pasta <em>config/</em> simplesmente discrimina a versão exigida dos pacotes no processo <strong>munge</strong>. Exemplo:</p>
-<pre><code>data.table: 1.9.6
-execucao: 0.3.0
-readxl: 0.1.0
-relatorios: 0.2.9
-reest: 0.1.1</code></pre>
-<p>O script <em>R/packageVersions.R</em>, por sua vez, verifica a versão <strong>instalada</strong> destes pacotes no computador que executa o processo. Se algum dos pacotes estiver desatualizado, o script sugere a atualização ao usuário:</p>
-<p><img src="imgs/deseja_atualizar.png" alt="Config" /></p>
-<p>Se o usuário optar por não atualizar, o processo é encerrado. Se desejar atualizar, os pacotes mantidos pela DCGF serão atualizados utilizando o comando <em>devtools::install_bitbucket()</em>, e os pacotes externos serão atualizados via <em>install.packages()</em>.</p>
+<div id="path" class="section level2">
+<h2><span class="header-section-number">1.2</span> PATH</h2>
+<p>A variável <code>PATH</code> indica o caminho para pastas no computador que guardam softwares de interesse. Se o caminho <code>C:\Program Files\R\R-3.2.3\bin</code>, por exemplo, que abriga o software R estiver incluído no <code>PATH</code>, então o R poderá ser acessado na linha de comando simplesmente digitando-se R.</p>
+<p>O App da reestimativa utiliza esta opção para acessar o R, Git e Qlikview. Logo o caminho das pastas destes softwares devem constar na variável <code>PATH</code>.</p>
+<p>Verifique as pastas corretas e ceritifique que estão incluídas. O caminho das pastas pode variar. No computador utilizado para redigir este manual, os caminhos destes três softwares são:</p>
+<pre><code>C:\Program Files\R\R-3.2.3\bin
+C:\Program Files\Git\bin
+C:\Program Files\QlikView</code></pre>
+</div>
+<div id="path_scppo" class="section level2">
+<h2><span class="header-section-number">1.3</span> PATH_SCPPO</h2>
+<p>As pastas da rede são mapeadas em unidades de rede identificadas por uma letra maiúscula seguida de dois pontos <code>(:)</code>. O App da Reestimativa precisa acessar a pasta da Reestimativa na rede, e para isso, a variável <code>PATH_SCPPO</code> deve estar definida informando o nome correto da unidade de rede. Neste computador esta variável está definida como <code>S:</code>.</p>
+</div>
+<div id="r_libs_path" class="section level2">
+<h2><span class="header-section-number">1.4</span> R_LIBS_PATH</h2>
+<p>Por padrão, os pacotes do R são instalados na mesma pasta em que o programa está instalado (ex: <code>C:\Program Files\R\R-3.2.3\</code>). Por restrições de segurança da CAMG, pode ser que os pacotes sejam instalados em outro diretório. Neste caso, pode acontecer que o R não encontre os pacotes instalados e, portanto, não consiga executar determinados processos.</p>
+<p>Para evitar este problema, é conveniente definir uma pasta padrão para instalação dos pacotes. Isto é feito definindo-se a variável <code>R_LIBS_PATH</code>.</p>
+<p>Neste computador, por exemplo, esta variável está definida como <code>C:\Users\m752633\Documents\R\win-library\3.2</code>. Se já houverem pacotes numa pasta semelhante a essa no seu computador, utilize-a na variável <code>R_LIBS_PATH</code>.</p>
+</div>
+</div>
+<div id="onde-vivem" class="section level1">
+<h1><span class="header-section-number">2</span> Onde vivem?</h1>
+<p>Para definir ou extinguir variáveis de ambiente digite “ambiente” na caixa de pesquisa do menu iniciar:</p>
+<p><img src="imgs/vars_ambiente.png" alt="Variáveis de Ambiente" /></p>
 </div>
 
 

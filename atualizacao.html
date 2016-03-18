@@ -12,7 +12,7 @@
 <meta name="author" content="DCGF" />
 
 
-<title>App Reestimativa - Config</title>
+<title>Passo a passo de atualização da Reestimativa</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -290,6 +290,7 @@ div.tocify {
           <a href="make" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">App Reestimativa <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
              <li class="dropdown-header">Tópicos especiais</li>
+             <li><a target="_blank" href="atualizacao.html">Atualização do App</a></li>
              <li><a target="_blank" href="config.html">Config</a></li>
              <li><a target="_blank" href="make_deploy.html">make deploy</a></li>
           </ul>
@@ -303,33 +304,52 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">App Reestimativa - Config</h1>
+<h1 class="title">Passo a passo de atualização da Reestimativa</h1>
 <h4 class="author"><em>DCGF</em></h4>
 <h4 class="date"><em>15 de março de 2016</em></h4>
 
 </div>
 
 
-<div id="config" class="section level1">
-<h1><span class="header-section-number">1</span> Config</h1>
-<p>A construção do aplicativo começa com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versão especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versão diferente da necessária, o usuário terá a opção de atualizá-lo no decorrer do processo, ou encerrar o processo e fazer a atualização manual do pacote. A função deste teste é evitar que o processamento dos dados no <strong>munge</strong> deixe de funcionar em razão de alterações não esperadas nos pacotes utilizados.</p>
+<div id="sincronizar-repositorio-local-com-a-nuvem" class="section level1">
+<h1><span class="header-section-number">1</span> Sincronizar repositório local com a nuvem</h1>
+<div id="verificar-alteracoes-locais" class="section level2">
+<h2><span class="header-section-number">1.1</span> Verificar alterações locais</h2>
+<p>Antes de iniciar a sincronização, verifique se há alterações locais que deseja salvar ou descartar:</p>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p>Utilize <strong>git add</strong> para validar alterações que desejar, caso ainda não estejam validadas e <strong>git commit -m “(<em>mensagem do commit</em>)”</strong> para salvar as alterações.</p>
+<p>Se desejar descartar alterações, utilize o comando <strong>git checkout – <em>[arquivo]</em></strong>. Para mais detalhes veja <a href="https://www.atlassian.com/git/tutorials/undoing-changes/git-reset">isto</a>.</p>
+<p>Utilize <strong>git push</strong> para enviar as atualizações para a nuvem.</p>
 </div>
-<div id="estrutura" class="section level1">
-<h1><span class="header-section-number">2</span> Estrutura</h1>
-<p>Os testes de versão de pacotes é construído com dois arquivos:</p>
-<ul>
-<li>config/packageVersions</li>
-<li>R/packageVersions.R</li>
-</ul>
-<p>O arquivo na pasta <em>config/</em> simplesmente discrimina a versão exigida dos pacotes no processo <strong>munge</strong>. Exemplo:</p>
-<pre><code>data.table: 1.9.6
-execucao: 0.3.0
-readxl: 0.1.0
-relatorios: 0.2.9
-reest: 0.1.1</code></pre>
-<p>O script <em>R/packageVersions.R</em>, por sua vez, verifica a versão <strong>instalada</strong> destes pacotes no computador que executa o processo. Se algum dos pacotes estiver desatualizado, o script sugere a atualização ao usuário:</p>
-<p><img src="imgs/deseja_atualizar.png" alt="Config" /></p>
-<p>Se o usuário optar por não atualizar, o processo é encerrado. Se desejar atualizar, os pacotes mantidos pela DCGF serão atualizados utilizando o comando <em>devtools::install_bitbucket()</em>, e os pacotes externos serão atualizados via <em>install.packages()</em>.</p>
+<div id="verificar-alteracoes-na-nuvem" class="section level2">
+<h2><span class="header-section-number">1.2</span> Verificar alterações na nuvem</h2>
+<p>Utilize <strong>git fetch</strong> para recuperar informações sobre o estado mais recente do repositório na nuvem, e em seguida <strong>git status</strong> para verificar a situação do repositório local em relação à nuvem.</p>
+<p>Caso o repositório da nuvem contenha alterações que não existem no repositório local, utilize <strong>git merge origin/<em>[branch]</em></strong> para sincronizar.</p>
+<p>Conselho enigmático do Mestre dos Magos ao final do episódio:</p>
+<blockquote>
+<p>É possível realizar as operações acima utilizando apenas o comando <strong>git pull</strong>.</p>
+</blockquote>
+</div>
+</div>
+<div id="atualizar-consultas-da-execucao" class="section level1">
+<h1><span class="header-section-number">2</span> Atualizar consultas da execução</h1>
+<p>Essa parte é fácil né? ;) Só não esqueça de salvar as consultas em formato <strong>.xlsx</strong> na pasta <em>data-raw/</em>.</p>
+</div>
+<div id="make-build" class="section level1">
+<h1><span class="header-section-number">3</span> Make build</h1>
+<p>Após salvar as consultas da execução na pasta <em>data-raw/</em>, abra o Git Bash, execute o comando <em>make build</em>, e reze para que tudo dê certo.</p>
+</div>
+<div id="make-deploy" class="section level1">
+<h1><span class="header-section-number">4</span> Make deploy</h1>
+<p>Abra o Qlikview, utilize o comando <strong>Recarregar</strong> e verifique na aba “Painel de controle” o resultado dos testes e se os dados da execução foram atualizados. Se estiver tudo em ordem, fique feliz. Feche o Qlikview e volte ao Git Bash. Num ato de fé, execute o comando <strong>make deploy</strong><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Ao final da execução, verifique se o app foi copiado para a pasta da Reestimativa na rede.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Se sua curiosidade científica é maior do que sua fé, você pode estudar o funcionamento do <em>make deploy</em> <a href="make_deploy.html">aqui</a>.<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 

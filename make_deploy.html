@@ -12,7 +12,7 @@
 <meta name="author" content="DCGF" />
 
 
-<title>App Reestimativa - Config</title>
+<title>make deploy</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
@@ -32,6 +32,49 @@ body {
 </style>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 
@@ -303,34 +346,32 @@ div.tocify {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">App Reestimativa - Config</h1>
+<h1 class="title">make deploy</h1>
 <h4 class="author"><em>DCGF</em></h4>
 <h4 class="date"><em>15 de março de 2016</em></h4>
 
 </div>
 
 
-<div id="config" class="section level1">
-<h1><span class="header-section-number">1</span> Config</h1>
-<p>A construção do aplicativo começa com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versão especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versão diferente da necessária, o usuário terá a opção de atualizá-lo no decorrer do processo, ou encerrar o processo e fazer a atualização manual do pacote. A função deste teste é evitar que o processamento dos dados no <strong>munge</strong> deixe de funcionar em razão de alterações não esperadas nos pacotes utilizados.</p>
-</div>
-<div id="estrutura" class="section level1">
-<h1><span class="header-section-number">2</span> Estrutura</h1>
-<p>Os testes de versão de pacotes é construído com dois arquivos:</p>
-<ul>
-<li>config/packageVersions</li>
-<li>R/packageVersions.R</li>
-</ul>
-<p>O arquivo na pasta <em>config/</em> simplesmente discrimina a versão exigida dos pacotes no processo <strong>munge</strong>. Exemplo:</p>
-<pre><code>data.table: 1.9.6
-execucao: 0.3.0
-readxl: 0.1.0
-relatorios: 0.2.9
-reest: 0.1.1</code></pre>
-<p>O script <em>R/packageVersions.R</em>, por sua vez, verifica a versão <strong>instalada</strong> destes pacotes no computador que executa o processo. Se algum dos pacotes estiver desatualizado, o script sugere a atualização ao usuário:</p>
-<p><img src="imgs/deseja_atualizar.png" alt="Config" /></p>
-<p>Se o usuário optar por não atualizar, o processo é encerrado. Se desejar atualizar, os pacotes mantidos pela DCGF serão atualizados utilizando o comando <em>devtools::install_bitbucket()</em>, e os pacotes externos serão atualizados via <em>install.packages()</em>.</p>
-</div>
+<p>Esta é a parte do <strong>Makefile</strong> que define o processo <strong>make deploy</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span class="dv">deploy:</span><span class="dt"> </span><span class="co">## Atualiza o qlikview, faz commit da alteração e disponibiliza o .qvw na rede da SCPPO</span>
+    <span class="ch">@</span><span class="fu">echo Recarregando dados no Qlikview...</span>
+    <span class="ch">@</span><span class="fu">qv /r Reestimativa.qvw</span>
+    <span class="ch">@</span><span class="fu">echo </span><span class="st">&quot;Atualizando GitLab...&quot;</span>
+    <span class="ch">@</span><span class="fu">echo </span><span class="st">&quot;-----------------------------------------------------&quot;</span>
+    <span class="ch">@</span><span class="fu">git add Reestimativa.qvw</span>
+    <span class="ch">@</span><span class="fu">git commit -m </span><span class="st">&quot;Disponibiliza app Reestimativa na pasta da SCPPO&quot;</span>
+    <span class="ch">@</span><span class="fu">git push origin master</span>
+    <span class="ch">@</span><span class="fu">git rev-parse --short HEAD &gt; logs/commit.txt</span>
+    <span class="ch">@</span><span class="fu">echo </span><span class="st">&quot;-----------------------------------------------------&quot;</span>
+    <span class="ch">@</span><span class="fu">cp Reestimativa.qvw </span><span class="ch">$(</span><span class="dt">PATH_SCPPO</span><span class="ch">)</span><span class="fu">/3.Gestão\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_</span><span class="ch">$(</span><span class="dt">DATE</span><span class="ch">)</span><span class="fu">_</span><span class="ch">$(</span><span class="dt">COMMIT</span><span class="ch">)</span><span class="fu">.qvw</span>
+    <span class="ch">@</span><span class="fu">echo </span><span class="st">&quot;Arquivo Reestimativa_</span><span class="ch">$(</span><span class="dt">DATE</span><span class="ch">)</span><span class="st">_</span><span class="ch">$(</span><span class="dt">COMMIT</span><span class="ch">)</span><span class="st">.qvw criado com sucesso em </span><span class="ch">$(</span><span class="dt">PATH_SCPPO</span><span class="ch">)</span><span class="st">/3.Gestão Fiscal/3.Reestimativa/2016/!base/&quot;</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>A linha <code>@qv /r Reestimativa.qvw</code> abre, recarrega e salva o app da Reestimativa.</p></li>
+<li><p>As linhas seguintes (<code>git add</code>, <code>git commit</code>) validam e salvam as alterações feitas ao App no sistema de controle de versão (git). O comando <code>git push</code> envia estas alterações para a nuvem.</p></li>
+<li><p><code>@git rev-parse --short HEAD &gt; logs/commit.txt</code> salva o identificador do commit no arquivo <em>logs/commit.txt</em>. Este identificador é usado no nome do app que é copiado na pasta da rede.</p></li>
+<li><p><code>@cp Reestimativa.qvw $(PATH_SCPPO)/3.Gestão\ Fiscal/3.Reestimativa/2016/!base/Reestimativa_$(DATE)_$(COMMIT).qvw</code> copia o app na rede. Neste comando utiliza-se a variável de ambiente <code>PATH_SCPPO</code>, que indica o nome da unidade de rede (“S:” ou “T:”, por exemplo), a variável <code>DATE</code>, que registra a data corrente, e a variável <code>COMMIT</code>, que guarda o identificador do commit. Todas estas variáveis são definidas no início do makefile.</p></li>
+</ol>
 
 
 
