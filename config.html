@@ -290,8 +290,10 @@ div.tocify {
           <a href="make" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">App Reestimativa <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
              <li class="dropdown-header">Tópicos especiais</li>
+             <li><a target="_blank" href="atualizacao.html">Atualização do App</a></li>
              <li><a target="_blank" href="config.html">Config</a></li>
              <li><a target="_blank" href="make_deploy.html">make deploy</a></li>
+             <li><a target="_blank" href="variaveis_ambiente.html">Variáveis de ambiente</a></li>
           </ul>
         </li>
 
@@ -305,31 +307,31 @@ div.tocify {
 
 <h1 class="title">App Reestimativa - Config</h1>
 <h4 class="author"><em>DCGF</em></h4>
-<h4 class="date"><em>15 de março de 2016</em></h4>
+<h4 class="date"><em>15 de marÃ§o de 2016</em></h4>
 
 </div>
 
 
 <div id="config" class="section level1">
 <h1><span class="header-section-number">1</span> Config</h1>
-<p>A construção do aplicativo começa com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versão especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versão diferente da necessária, o usuário terá a opção de atualizá-lo no decorrer do processo, ou encerrar o processo e fazer a atualização manual do pacote. A função deste teste é evitar que o processamento dos dados no <strong>munge</strong> deixe de funcionar em razão de alterações não esperadas nos pacotes utilizados.</p>
+<p>A construÃ§Ã£o do aplicativo comeÃ§a com um teste de requisitos. O processo <strong>munge</strong> depende de pacotes do R. Estes pacotes devem estar na versÃ£o especificada na pasta <em>config/</em>. Se algum destes pacotes estiver em versÃ£o diferente da necessÃ¡ria, o usuÃ¡rio terÃ¡ a opÃ§Ã£o de atualizÃ¡-lo no decorrer do processo, ou encerrar o processo e fazer a atualizaÃ§Ã£o manual do pacote. A funÃ§Ã£o deste teste Ã© evitar que o processamento dos dados no <strong>munge</strong> deixe de funcionar em razÃ£o de alteraÃ§Ãµes nÃ£o esperadas nos pacotes utilizados.</p>
 </div>
 <div id="estrutura" class="section level1">
 <h1><span class="header-section-number">2</span> Estrutura</h1>
-<p>Os testes de versão de pacotes é construído com dois arquivos:</p>
+<p>Os testes de versÃ£o de pacotes Ã© construÃ­do com dois arquivos:</p>
 <ul>
 <li>config/packageVersions</li>
 <li>R/packageVersions.R</li>
 </ul>
-<p>O arquivo na pasta <em>config/</em> simplesmente discrimina a versão exigida dos pacotes no processo <strong>munge</strong>. Exemplo:</p>
+<p>O arquivo na pasta <em>config/</em> simplesmente discrimina a versÃ£o exigida dos pacotes no processo <strong>munge</strong>. Exemplo:</p>
 <pre><code>data.table: 1.9.6
 execucao: 0.3.0
 readxl: 0.1.0
 relatorios: 0.2.9
 reest: 0.1.1</code></pre>
-<p>O script <em>R/packageVersions.R</em>, por sua vez, verifica a versão <strong>instalada</strong> destes pacotes no computador que executa o processo. Se algum dos pacotes estiver desatualizado, o script sugere a atualização ao usuário:</p>
+<p>O script <em>R/packageVersions.R</em>, por sua vez, verifica a versÃ£o <strong>instalada</strong> destes pacotes no computador que executa o processo. Se algum dos pacotes estiver desatualizado, o script sugere a atualizaÃ§Ã£o ao usuÃ¡rio:</p>
 <p><img src="imgs/deseja_atualizar.png" alt="Config" /></p>
-<p>Se o usuário optar por não atualizar, o processo é encerrado. Se desejar atualizar, os pacotes mantidos pela DCGF serão atualizados utilizando o comando <em>devtools::install_bitbucket()</em>, e os pacotes externos serão atualizados via <em>install.packages()</em>.</p>
+<p>Se o usuÃ¡rio optar por nÃ£o atualizar, o processo Ã© encerrado. Se desejar atualizar, os pacotes mantidos pela DCGF serÃ£o atualizados utilizando o comando <em>devtools::install_bitbucket()</em>, e os pacotes externos serÃ£o atualizados via <em>install.packages()</em>.</p>
 </div>
 
 
