@@ -11,8 +11,6 @@ output:
     number_sections: true
     theme: "sandstone"
     highlight: tango
-    includes:
-      in_header: _font_size.html
 ---
 
 ```{r setup, include=FALSE}

@@ -10,8 +10,6 @@ output:
     collapsed: true
     number_sections: true
     theme: "sandstone"
-    includes:
-      in_header: _font_size.html
 ---
 
 ```{r setup, include=FALSE}
@@ -30,7 +28,7 @@ salvar ou descartar:
 Utilize **git add** para validar alterações que desejar, caso ainda não estejam
 validadas e **git commit -m "(*mensagem do commit*)"** para salvar as alterações.
 
-Se desejar descartar alterações, utilize o comando **git checkout -- *[arquivo]***.
+Se desejar descartar alterações, utilize o comando **git checkout - - *[arquivo]***.
 Para mais detalhes veja [isto](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset).
 
 Utilize **git push** para enviar as atualizações para a nuvem.

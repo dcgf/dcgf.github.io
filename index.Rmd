@@ -10,8 +10,6 @@ output:
     collapsed: true
     number_sections: true
     theme: "sandstone"
-    includes:
-      in_header: _font_size.html
 ---
 
 ```{r setup, include=FALSE}

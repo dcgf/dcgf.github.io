@@ -2,4 +2,5 @@ html_document:
   self_contained: false
   lib_dir: libs
   highlight: tango 
-
+  includes:
+    in_header: _font_size.html
